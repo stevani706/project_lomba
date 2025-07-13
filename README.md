@@ -1,2 +1,2 @@
 # project_lomba
-web
+html
