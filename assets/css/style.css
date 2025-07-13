@@ -1,0 +1,475 @@
+/* === GLOBAL STYLES === */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f7f8fc; /* Latar belakang yang lebih lembut */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6; /* Ketinggian baris untuk keterbacaan */
+    color: #333; /* Warna teks dasar yang netral */
+    -webkit-font-smoothing: antialiased; /* Untuk rendering font yang lebih halus */
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* === BASE LINK STYLES === */
+a {
+    text-decoration: none; /* Menghilangkan garis bawah default pada link */
+    color: inherit; /* Link akan mewarisi warna teks dari elemen induknya */
+    transition: color 0.2s ease-in-out; /* Transisi halus saat warna link berubah */
+}
+
+a:hover {
+    color: #0056cc; /* Warna default untuk link biasa saat di-hover */
+}
+
+/* === UTILITIES / HELPER CLASSES === */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 50px auto; /* Margin atas bawah 50px, otomatis di tengah horizontal */
+    padding: 40px;
+    background-color: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Efek bayangan yang lebih menonjol */
+    border-radius: 12px; /* Sudut membulat pada kontainer utama */
+}
+
+.text-center {
+    text-align: center; /* Teks rata tengah */
+}
+
+/* === MESSAGE ALERTS (Success/Error) === */
+.message {
+    padding: 15px;
+    margin: 20px auto; /* Margin dan pemusatan otomatis */
+    border-radius: 6px;
+    font-weight: bold;
+    text-align: center;
+    width: fit-content; /* Lebar disesuaikan dengan konten */
+    max-width: 80%; /* Batas lebar maksimum */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Bayangan kecil untuk pesan */
+}
+
+.message.success {
+    background-color: #d4edda; /* Latar belakang hijau terang */
+    color: #155724; /* Teks hijau gelap */
+    border: 1px solid #c3e6cb;
+}
+
+.message.error {
+    background-color: #f8d7da; /* Latar belakang merah terang */
+    color: #721c24; /* Teks merah gelap */
+    border: 1px solid #f5c6cb;
+}
+
+/* === NAVBAR === */
+.navbar {
+    background-color: #2d7dff; /* Warna biru konsisten dengan daftar_lomba.php */
+    color: white;
+    padding: 12px 30px; /* Padding vertikal sedikit lebih kecil */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Bayangan di bawah navbar */
+}
+
+.navbar .logo {
+    font-size: 18px; /* Ukuran font logo */
+    font-weight: bold;
+    letter-spacing: 0.5px; /* Spasi antar huruf */
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Jarak antar elemen di sisi kanan navbar */
+}
+
+.navbar .menu {
+    display: flex;
+    list-style: none; /* Menghilangkan bullet point pada daftar */
+    margin: 0;
+    padding: 0;
+    gap: 20px; /* Jarak antar item menu */
+}
+
+.navbar .menu a {
+    color: white; /* Warna teks link default */
+    text-decoration: none;
+    font-weight: 500;
+    padding: 5px 0; /* Padding vertikal untuk area klik */
+    transition: all 0.2s ease-in-out; /* Transisi untuk hover dan active */
+}
+
+.navbar .menu a:hover {
+    color: #e0eaff; /* Warna teks sedikit lebih terang saat di-hover */
+    text-decoration: underline; /* Menambahkan garis bawah saat di-hover */
+}
+
+/* Gaya untuk link navbar yang aktif (halaman yang sedang dikunjungi) */
+.navbar .menu a.active {
+    color: #ffd700; /* Warna kuning emas untuk link aktif */
+    font-weight: bold;
+    text-decoration: underline; /* Tetap ada garis bawah */
+}
+
+.logout-btn {
+    background-color: white;
+    color: #2d7dff; /* Warna tombol logout yang konsisten */
+    border: none;
+    padding: 8px 16px; /* Padding tombol logout */
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none; /* Penting agar tidak ada underline */
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.logout-btn:hover {
+    background-color: #e2e6ea;
+    color: #0056b3; /* Warna teks saat tombol logout di-hover */
+}
+
+/* === CONTENT SECTION === */
+.content {
+    padding: 40px;
+    width: 90%;
+    max-width: 1200px;
+    margin: auto; /* Memusatkan konten utama */
+}
+
+/* === HEADINGS === */
+h2 {
+    text-align: center;
+    color: #2d7dff; /* Warna biru yang konsisten */
+    margin-bottom: 30px;
+    font-size: 28px; /* Ukuran font H2 */
+}
+
+h3 {
+    text-align: center;
+    color: #2d7dff; /* Warna biru yang konsisten */
+    margin-bottom: 25px;
+    font-size: 22px; /* Ukuran font H3 */
+}
+
+/* === CARD GRIDS (Generic for Lomba, Peserta, Juri) === */
+.grid-container {
+    display: grid;
+    /* Menampilkan 3 kolom dengan lebar minimal 250px dan fleksibel */
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
+    gap: 25px; /* Jarak antar kartu lebih besar */
+    margin-top: 40px;
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Bayangan yang lebih jelas */
+    overflow: hidden; /* Pastikan konten tidak keluar dari batas kartu */
+    text-align: center;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Transisi halus */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Kartu sedikit naik saat di-hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Bayangan lebih dalam saat di-hover */
+}
+
+.card .img-container {
+    width: 100%;
+    height: 180px; /* Tinggi gambar yang konsisten untuk semua kartu */
+    background-color: #f8f8f8; /* Latar belakang abu-abu terang untuk area gambar */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.card .img-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Memastikan gambar tetap dalam proporsi dan masuk dalam kontainer */
+}
+
+.card h3 {
+    margin: 15px 10px 10px; /* Margin untuk judul kartu */
+    font-size: 19px;
+    color: #2d7dff; /* Warna judul kartu konsisten */
+    min-height: 45px; /* Tinggi minimal untuk judul agar konsisten */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.3;
+}
+
+.card p {
+    margin: 0 15px 15px; /* Margin untuk paragraf di kartu, sedikit lebih lebar */
+    font-size: 14px;
+    color: #555; /* Warna teks paragraf */
+}
+
+/* === SPECIFIC CARD STYLES (Untuk tombol-tombol di dalam kartu) === */
+
+/* Tombol Daftar di Lomba Card */
+.lomba-card .btn-daftar {
+    display: inline-block;
+    margin: 15px auto 20px; /* Margin yang lebih baik */
+    padding: 10px 22px;
+    background-color: #28a745; /* Warna hijau untuk tombol daftar */
+    color: white;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.2s ease-in-out;
+}
+.lomba-card .btn-daftar:hover {
+    background-color: #218838;
+}
+
+/* Tombol Hapus Peserta/Juri */
+.btn-hapus-peserta,
+.btn-hapus-juri {
+    display: inline-block;
+    margin: 15px auto 20px;
+    padding: 8px 18px;
+    background-color: #dc3545; /* Warna merah untuk tombol hapus */
+    color: white;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.2s ease-in-out;
+}
+.btn-hapus-peserta:hover,
+.btn-hapus-juri:hover {
+    background-color: #c82333;
+}
+
+/* === FORM STYLES (Generic for Add/Edit) === */
+.form-section {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+}
+
+.form-section h3 {
+    margin-bottom: 25px;
+    color: #287bff;
+}
+
+.form-section input[type="text"],
+.form-section input[type="email"],
+.form-section input[type="password"],
+.form-section input[type="file"],
+.form-section textarea,
+.form-section select {
+    width: calc(100% - 24px); /* Kurangi padding dari lebar total */
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box; /* Pastikan padding dihitung dalam lebar */
+}
+
+.form-section textarea {
+    resize: vertical; /* Izinkan resize vertikal */
+    min-height: 100px;
+}
+
+.form-section button[type="submit"] {
+    width: 100%;
+    padding: 14px;
+    background-color: #287bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    margin-top: 20px;
+}
+
+.form-section button[type="submit"]:hover {
+    background-color: #004bb5;
+}
+
+/* === LOGIN BOX / FORM (Specific) === */
+.login-box {
+    width: 350px; /* Lebar login box sedikit lebih besar */
+    background: white;
+    padding: 40px; /* Padding lebih besar */
+    margin: 100px auto;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15); /* Bayangan lebih jelas */
+    text-align: center;
+}
+
+.login-box h2 {
+    color: #007bff;
+    margin-bottom: 25px; /* Margin bawah sedikit lebih besar */
+    font-size: 26px;
+}
+
+.login-box input,
+.login-box select {
+    width: calc(100% - 20px); /* Sesuaikan dengan padding */
+    padding: 12px; /* Padding lebih besar */
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.login-box button {
+    width: 100%;
+    padding: 12px; /* Padding lebih besar */
+    background-color: #007bff;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.login-box button:hover {
+    background-color: #0056cc;
+}
+
+.login-box a {
+    color: #007bff;
+    display: block;
+    margin-top: 15px; /* Margin atas lebih besar */
+    font-size: 14px;
+}
+
+/* === FOOTER (Optional) === */
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+    font-size: 14px;
+}
+
+
+/* === RESPONSIVE DESIGN (Media Queries) === */
+
+/* Untuk tablet dan layar yang lebih kecil */
+@media (max-width: 992px) {
+    .grid-container {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* 2 atau 3 kolom tergantung lebar */
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start; /* Sejajarkan ke kiri di mobile */
+        padding: 15px 20px;
+    }
+
+    .navbar .logo {
+        margin-bottom: 10px; /* Jarak bawah logo saat di mobile */
+    }
+
+    .navbar .menu {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 15px;
+        gap: 10px;
+        align-items: center; /* Pusatkan link menu di mobile */
+    }
+
+    .navbar .menu li {
+        width: 100%; /* Agar link mengambil seluruh lebar */
+        text-align: center;
+    }
+
+    .navbar-right {
+        flex-direction: column;
+        width: 100%;
+        gap: 15px;
+        margin-top: 15px;
+        align-items: center;
+    }
+
+    .logout-btn {
+        width: 80%; /* Tombol logout lebih lebar di mobile */
+    }
+
+    .container {
+        width: 95%;
+        padding: 25px; /* Padding sedikit lebih kecil di mobile */
+        margin: 30px auto;
+    }
+
+    .grid-container {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Otomatis 1 atau 2 kolom */
+        gap: 15px; /* Jarak antar kartu lebih kecil */
+    }
+
+    .card .img-container {
+        height: 150px; /* Tinggi gambar sedikit lebih kecil di mobile */
+    }
+
+    h2 {
+        font-size: 26px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    .login-box {
+        width: 90%;
+        padding: 30px;
+    }
+}
+
+/* Untuk smartphone */
+@media (max-width: 480px) {
+    .navbar .logo {
+        font-size: 16px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    .grid-container {
+        grid-template-columns: 1fr; /* Satu kolom penuh di layar sangat kecil */
+        gap: 15px;
+    }
+
+    .form-section input,
+    .form-section textarea,
+    .form-section select {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .form-section button {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .login-box input,
+    .login-box select {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .login-box button {
+        font-size: 15px;
+        padding: 10px;
+    }
+}
